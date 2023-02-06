@@ -1,0 +1,7 @@
+terraform init
+terraform validate
+terraform plan -out vpc_demo.tfplan
+terraform apply "vpc_demo.tfplan"
+terraform destroy
+
+cls
