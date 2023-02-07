@@ -49,6 +49,13 @@ resource "aws_route_table" "public_rt" {
   }
 }
 
+# Route table association with public subnets
+resource "aws_route_table_association" "a" {
+  count = "${length(var.subnets_cidr_public)}"
+  subnet_id      = "${element(aws_subnet.wh_public_sn.*.id,count.index)}"
+  route_table_id = "${aws_route_table.public_rt.id}"
+}
+
 ###################
 
 # Allocate EIPs for the NATs
